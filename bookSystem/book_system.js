@@ -13,9 +13,8 @@ function addBook() {
       pagesNumber: pagesNumber,
     };
 
-    deleteButton();
     books.push(book);
-    showbooks();
+    showBooks();
     clearInputs();
   } else {
     alert(
@@ -24,15 +23,16 @@ function addBook() {
   }
 }
 
-function showbooks() {
+function showBooks() {
   const booksDiv = books.map(
-    (book, index) => `<h1>Book Number: ${index + 1}</h1>
+    (book, index) => `<div><h1>Book Number: ${index + 1}</h1>
     <p><strong>Book Name: </strong>${book.name}</p>
     <p><strong>Author Name: </strong>${book.authorName}</p>
     <p><strong>Book Description: </strong>${book.bookDescription}</p>
-    <p><strong>No. of Pages: </strong>${book.pagesNumber} page(s)</p>`
+    <p><strong>No. of Pages: </strong>${book.pagesNumber} page(s)</p>
+    <button onclick="deleteBook(${index})">Delete</button></div>`
   );
-  document.getElementById("books").innerHTML = booksDiv.join("");
+  document.getElementById("books").innerHTML = booksDiv;
 }
 
 function clearInputs() {
@@ -42,14 +42,8 @@ function clearInputs() {
   document.getElementById("pagesNumber").value = "";
 }
 
-function deleteButton() {
-  const delBtn = document.createElement("button");
-  delBtn.textContent = "Delete";
-  document.body.appendChild(delBtn);
-  delBtn.onclick = () => {
-    books.splice(0, books.length);
-    showbooks();
-    clearInputs();
-    delBtn.remove();
-  };
+// Function to delete a specific book by index
+function deleteBook(index) {
+  books.splice(index, 1); // Remove the book at the specified index
+  showBooks(); // Refresh the displayed books
 }

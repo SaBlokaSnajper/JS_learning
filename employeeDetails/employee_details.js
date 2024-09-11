@@ -4,14 +4,23 @@ const employees = [
   { id: 3, name: "Bob Johnson", age: 35, department: "Finance", salary: 60000 },
 ];
 
-const totalEmployees = employees
-  .map(
-    (employee, index) =>
-      `<p>${employee.id}: ${employee.name}: ${employee.age} - ${employee.department} - ${employee.salary}</p>`
-  )
-  .join("");
-document.getElementById("employeesDetails").innerHTML = totalEmployees;
+function totalEmployees() {
+  const employeeListDiv = document.getElementById("employeesDetails");
+  employeeListDiv.innerHTML = ""; // Clear any previous content
 
+  employees.forEach((employee) => {
+    const employeeDiv = document.createElement("div");
+    employeeDiv.innerHTML = `
+        <p><strong>ID:</strong> ${employee.id}</p>
+        <p><strong>Name:</strong> ${employee.name}</p>
+        <p><strong>Age:</strong> ${employee.age}</p>
+        <p><strong>Department:</strong> ${employee.department}</p>
+        <p><strong>Salary:</strong> $${employee.salary}</p>
+        <hr>
+      `;
+    employeeListDiv.appendChild(employeeDiv);
+  });
+}
 function calculateTotalSalaries() {
   const totalSalaries = employees.reduce(
     (acc, employee) => acc + employee.salary,
@@ -26,8 +35,8 @@ function displayHREmployees() {
   );
   const hrEmployeesDisplay = hrEmployees
     .map(
-      (employees, index) =>
-        `<p>${employees.id}: ${employee.name}: ${employee.age} - ${employee.department} - ${employee.salary}</p>`
+      (employee, index) =>
+        `<p>${employee.id}: ${employee.name}: ${employee.name} - ${employee.department} - $${employee.salary}</p>`
     )
     .join("");
   document.getElementById("employeesDetails").innerHTML = hrEmployeesDisplay;

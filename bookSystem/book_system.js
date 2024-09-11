@@ -12,6 +12,8 @@ function addBook() {
       bookDescription: bookDescription,
       pagesNumber: pagesNumber,
     };
+
+    deleteButton();
     books.push(book);
     showbooks();
     clearInputs();
@@ -38,4 +40,16 @@ function clearInputs() {
   document.getElementById("authorName").value = "";
   document.getElementById("bookDescription").value = "";
   document.getElementById("pagesNumber").value = "";
+}
+
+function deleteButton() {
+  const delBtn = document.createElement("button");
+  delBtn.textContent = "Delete";
+  document.body.appendChild(delBtn);
+  delBtn.onclick = () => {
+    books.splice(0, books.length);
+    showbooks();
+    clearInputs();
+    delBtn.remove();
+  };
 }

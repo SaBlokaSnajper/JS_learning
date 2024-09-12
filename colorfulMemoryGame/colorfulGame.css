@@ -12,6 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding-left: 80px;
 }
 
 .startMain {
@@ -24,6 +25,8 @@ body {
 h1 {
   color: #fff;
   text-align: center;
+  font-size: 30px;
+  padding-right: 75px;
 }
 
 #game-container {
@@ -71,4 +74,9 @@ h1 {
   color: #3498db;
   border: none;
   font-weight: 900;
+}
+
+#startbtn:hover {
+  background-color: #1a4c6d;
+  color: white;
 }

@@ -79,10 +79,10 @@ function checkMatch() {
 
 // Function to start the game
 function startGame() {
-  startbtn.disabled = true; // Disable the start button during the game
+  startbtn.disabled = false; // Disable the start button during the game
   score = 0;
   scoreElement.textContent = `Score: ${score}`;
-  timeLeft = 30; // Reset the timer
+  timeLeft = 60; // Reset the timer
   startGameTimer(timeLeft); // Start the game timer
   cards = shuffle(colors.concat(colors)); // Shuffle the cards
   selectedCards = []; // Clear selected cards
@@ -93,10 +93,10 @@ function startGame() {
 
 // Function to handle the game timer
 function startGameTimer() {
-  timerElement.textContent = `Time Left: ${timeLeft}`;
+  timerElement.textContent = `Time Left: ${timeLeft} s`;
   gameInterval = setInterval(() => {
     timeLeft--;
-    timerElement.textContent = `Time Left: ${timeLeft}`;
+    timerElement.textContent = `Time Left: ${timeLeft} s`;
     if (timeLeft === 0) {
       clearInterval(gameInterval); // Stop the timer
       alert("Game Over!");

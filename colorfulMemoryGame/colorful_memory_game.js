@@ -5,17 +5,17 @@ const colors = [
   "purple",
   "orange",
   "pink",
-  "red",
-  "blue",
-  "green",
-  "purple",
-  "orange",
-  "pink",
+  "lime",
+  "navy",
+  "teal",
+  "magenta",
+  "cyan",
+  "yellow",
 ];
 let cards = [];
 let selectedCards = [];
 let score = 0;
-let timeLeft = 30;
+let timeLeft = 60;
 let gameInterval;
 
 const startbtn = document.getElementById("startbtn");
@@ -56,7 +56,7 @@ function handleCardClick(event) {
 
   // When two cards are selected, check for a match
   if (selectedCards.length === 2) {
-    setTimeout(checkMatch, 500);
+    setTimeout(checkMatch, 300);
   }
 }
 
@@ -66,13 +66,17 @@ function checkMatch() {
   if (card1.dataset.color === card2.dataset.color) {
     card1.classList.add("matched");
     card2.classList.add("matched");
-    score += 2;
-    scoreElement.textContent = `Score: ${score}`;
+    score++;
+    scoreElement.textContent = `Score: ${score} Matches`;
   } else {
     card1.textContent = "?";
     card2.textContent = "?";
     card1.style.backgroundColor = "#ddd";
     card2.style.backgroundColor = "#ddd";
+  }
+  if (score === 12) {
+    alert("Congratulations!");
+    location.reload();
   }
   selectedCards = []; // Reset the selected cards array
 }
@@ -81,7 +85,7 @@ function checkMatch() {
 function startGame() {
   startbtn.disabled = false; // Disable the start button during the game
   score = 0;
-  scoreElement.textContent = `Score: ${score}`;
+  scoreElement.textContent = `Score: ${score} Matches`;
   timeLeft = 60; // Reset the timer
   startGameTimer(timeLeft); // Start the game timer
   cards = shuffle(colors.concat(colors)); // Shuffle the cards
